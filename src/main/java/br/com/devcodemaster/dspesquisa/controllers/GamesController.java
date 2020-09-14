@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.devcodemaster.dspesquisa.entities.Game;
-import br.com.devcodemaster.dspesquisa.repositories.GameRepository;
+import br.com.devcodemaster.dspesquisa.dto.GameDTO;
+import br.com.devcodemaster.dspesquisa.services.GameService;
 
 @RestController
 @RequestMapping(value = "/games")
 public class GamesController {
     @Autowired
-    private GameRepository gameRepository;
+    private GameService gameService;
 
     @GetMapping
-    public ResponseEntity<List<Game>> findAll() {
-        List<Game> listGames = gameRepository.findAll();
+    public ResponseEntity<List<GameDTO>> findAll() {
+        List<GameDTO> listGames = gameService.findAll();
         return ResponseEntity.ok().body(listGames);
     }
 }
